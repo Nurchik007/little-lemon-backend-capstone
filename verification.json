@@ -1,0 +1,82 @@
+{
+  "utc": "2026-11-12T16:31:14.468502+00:00",
+  "django": "5.2.19",
+  "database": "MySQL 8.4.13",
+  "unit_integration_tests": {
+    "passed": 19,
+    "total": 19,
+    "elapsed_seconds": 125.823
+  },
+  "http_checks": [
+    {
+      "check": "Homepage HTML",
+      "status": 200
+    },
+    {
+      "check": "Static CSS",
+      "status": 200
+    },
+    {
+      "check": "Anonymous booking denied",
+      "status": 401
+    },
+    {
+      "check": "Guest registration",
+      "status": 201
+    },
+    {
+      "check": "Guest token login",
+      "status": 200
+    },
+    {
+      "check": "Customer menu write denied",
+      "status": 403
+    },
+    {
+      "check": "Staff token login",
+      "status": 200
+    },
+    {
+      "check": "Menu POST",
+      "status": 201
+    },
+    {
+      "check": "Menu GET",
+      "status": 200
+    },
+    {
+      "check": "Menu PUT",
+      "status": 200
+    },
+    {
+      "check": "Menu DELETE",
+      "status": 204
+    },
+    {
+      "check": "Booking POST",
+      "status": 201
+    },
+    {
+      "check": "Booking GET",
+      "status": 200
+    },
+    {
+      "check": "Booking PUT",
+      "status": 200
+    },
+    {
+      "check": "Booking DELETE",
+      "status": 204
+    },
+    {
+      "check": "Token logout",
+      "status": 204
+    },
+    {
+      "check": "Revoked token rejected",
+      "status": 401
+    }
+  ],
+  "insomnia_gui_run": false,
+  "deployment": "localhost only"
+}

@@ -1,0 +1,354 @@
+{
+  "info": {
+    "name": "Little Lemon Capstone - import into Insomnia",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Local example requests. Supply your own credentials and copy the login token. Staff token required for menu writes."
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "username",
+      "value": ""
+    },
+    {
+      "key": "password",
+      "value": ""
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "menu_id",
+      "value": "1"
+    },
+    {
+      "key": "booking_id",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 Public menu",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/menu/"
+      }
+    },
+    {
+      "name": "02 Register guest",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/registration/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "03 Token login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/api-token-auth/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "04 Current user",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/users/me/"
+      }
+    },
+    {
+      "name": "05 Create menu item (staff token)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/menu/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Lemon dessert for API review\",\n  \"price\": \"7.50\",\n  \"inventory\": 15\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "06 Get menu item",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/menu/{{menu_id}}/"
+      }
+    },
+    {
+      "name": "07 Replace menu item (staff token)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/menu/{{menu_id}}/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Lemon dessert for API review\",\n  \"price\": \"8.00\",\n  \"inventory\": 12\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "08 Delete menu item (staff token)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/menu/{{menu_id}}/"
+      }
+    },
+    {
+      "name": "09 List own bookings",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/bookings/"
+      }
+    },
+    {
+      "name": "10 Create booking",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/bookings/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Guest\",\n  \"no_of_guests\": 2,\n  \"booking_date\": \"2030-11-20T18:00:00Z\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "11 Get booking",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/bookings/{{booking_id}}/"
+      }
+    },
+    {
+      "name": "12 Replace booking",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/bookings/{{booking_id}}/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Guest\",\n  \"no_of_guests\": 4,\n  \"booking_date\": \"2030-11-20T18:00:00Z\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "13 Partially update booking",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/bookings/{{booking_id}}/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Guest party\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "14 Delete booking",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/bookings/{{booking_id}}/"
+      }
+    },
+    {
+      "name": "15 Course-style bookings route",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/restaurant/booking/tables/"
+      }
+    },
+    {
+      "name": "16 Logout and revoke token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/token/logout/"
+      }
+    }
+  ]
+}
