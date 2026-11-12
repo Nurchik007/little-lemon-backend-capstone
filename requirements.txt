@@ -1,3 +1,24 @@
+# Versions used for the successful MySQL verification run.
 Django==5.2.19
 djangorestframework==3.16.1
 mysqlclient==2.3.1
+djoser==2.3.5
+djangorestframework-simplejwt==5.5.1
+social-auth-app-django==6.0.0
+social-auth-core==5.0.0
+PyJWT==2.15.1
+cryptography==50.0.2
+requests==2.34.2
+requests-oauthlib==2.0.0
+oauthlib==4.0.1
+python3-openid==3.2.0
+defusedxml==0.7.1
+cffi==2.1.1
+pycparser==3.12
+charset-normalizer==3.5.2
+idna==3.20
+urllib3==2.8.0
+certifi==2026.10.23
+asgiref==3.13.0
+sqlparse==0.6.1
+tzdata==2026.6
