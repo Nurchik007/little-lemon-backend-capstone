@@ -1,11 +1,11 @@
 {
-  "utc": "2026-11-12T16:31:14.468502+00:00",
+  "utc": "2026-11-12T17:25:41.453323+00:00",
   "django": "5.2.19",
   "database": "MySQL 8.4.13",
   "unit_integration_tests": {
-    "passed": 19,
-    "total": 19,
-    "elapsed_seconds": 125.823
+    "passed": 21,
+    "total": 21,
+    "elapsed_seconds": 162.733
   },
   "http_checks": [
     {
@@ -74,6 +74,30 @@
     },
     {
       "check": "Revoked token rejected",
+      "status": 401
+    },
+    {
+      "check": "Djoser registration",
+      "status": 201
+    },
+    {
+      "check": "Djoser login",
+      "status": 200
+    },
+    {
+      "check": "Djoser profile",
+      "status": 200
+    },
+    {
+      "check": "Djoser private user list",
+      "status": 200
+    },
+    {
+      "check": "Djoser logout",
+      "status": 204
+    },
+    {
+      "check": "Djoser revoked token rejected",
       "status": 401
     }
   ],
