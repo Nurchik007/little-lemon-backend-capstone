@@ -1,0 +1,11 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Little Lemon • A place at our table</title><link rel="stylesheet" href="{% static 'restaurant/site.css' %}"></head>
+<body>
+<header><a class="brand" href="/">Little Lemon<span>CHICAGO</span></a><nav aria-label="Main"><a href="/api/menu/">Our menu</a><a href="/api/bookings/">Reservations</a><a href="/api/registration/">Join us</a></nav></header>
+<main>
+<section class="hero"><div><p class="eyebrow">MEDITERRANEAN ROOTS. CHICAGO SOUL.</p><h1>Good food.<br>Better company.</h1><p class="intro">Seasonal ingredients, family recipes, and a warm welcome. There’s always something fresh at Little Lemon.</p><a class="button" href="/api/menu/">Explore the menu <span aria-hidden="true">↗</span></a></div><div class="lemon" aria-hidden="true"><span>fresh<br>by nature.</span></div></section>
+<section class="cards" aria-label="At Little Lemon"><article><p class="number">01 / EAT WELL</p><h2>A taste of the coast</h2><p>Discover our menu, from vibrant salads to slow-cooked favorites.</p><a href="/api/menu/">Browse dishes →</a></article><article><p class="number">02 / COME TOGETHER</p><h2>Your table awaits</h2><p>Sign in to create, view, update, or cancel your own reservations.</p><a href="/api/bookings/">Manage a booking →</a></article><article><p class="number">03 / FEEL AT HOME</p><h2>Make yourself a regular</h2><p>Create an account and make your next visit a little easier.</p><a href="/api/registration/">Create an account →</a></article></section>
+</main><footer><span>Little Lemon · Chicago</span><span>Fresh flavors. Familiar faces.</span></footer>
+</body></html>
