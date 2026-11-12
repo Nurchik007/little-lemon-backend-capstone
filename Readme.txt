@@ -50,6 +50,10 @@ POST   /api/api-token-auth/            username, password -> {"token":"..."}
 POST   /api/token/login/               Alias for token login
 GET    /api/users/me/                  Current authenticated user
 POST   /api/token/logout/              Deletes/revokes the user's token
+POST   /auth/users/                    Djoser user registration
+POST   /auth/token/login/              Djoser login -> {"auth_token":"..."}
+GET    /auth/users/me/                 Djoser current user
+POST   /auth/token/logout/             Djoser token revocation
 GET    /api/bookings/                  Own bookings; staff can see all
 POST   /api/bookings/                  Create booking owned by current user
 GET    /api/bookings/<id>/             Own booking or staff
@@ -90,7 +94,7 @@ Local verification used Django's APIClient and an actual HTTP smoke script;
 it does not claim that the Insomnia desktop GUI was executed.
 
 DESIGN AND SECURITY
-MenuItemsView and SingleMenuItemView use DRF's generic CRUD views.
+MenuViewSet and BookingViewSet use DRF ModelViewSet for CRUD operations.
 BookingViewSet uses ModelViewSet; BookingSerializer and MenuSerializer define
 explicit input/output fields. MySQL migrations include positive-price and
 guest-count constraints and a unique owner/time index. An atomic save handles
@@ -113,11 +117,13 @@ secret management, backups, monitoring, distributed rate limits and a review.
 No cloud deployment, production readiness, or remote CI execution is claimed.
 
 UNIT/INTEGRATION TESTS
-The tests cover the required model __str__ representation and a serialized
+tests/test_models.py and tests/test_views.py contain the unit/integration tests.
+They cover the required model __str__ representation and a serialized
 menu-list comparison, plus MySQL persistence, HTML/static links, staff CRUD,
 input validation, safe registration, token/Bearer auth, logout revocation,
 booking CRUD, cross-user isolation, staff access, duplicate/past bookings,
-and the compatibility paths. See verification.txt for observed results.
+the compatibility paths, and Djoser registration/login/profile/logout with user-list privacy.
+See verification.txt for observed results.
 
 PRIMARY REFERENCES
 https://docs.djangoproject.com/en/5.2/ref/databases/#mysql-notes
