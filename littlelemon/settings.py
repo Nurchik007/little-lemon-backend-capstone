@@ -12,7 +12,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver']
 INSTALLED_APPS = [
     'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes',
     'django.contrib.sessions', 'django.contrib.messages', 'django.contrib.staticfiles',
-    'rest_framework', 'rest_framework.authtoken', 'restaurant.apps.RestaurantConfig',
+    'rest_framework', 'rest_framework.authtoken', 'djoser', 'restaurant.apps.RestaurantConfig',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -25,7 +25,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'littlelemon.urls'
 WSGI_APPLICATION = 'littlelemon.wsgi.application'
 TEMPLATES = [{
-    'BACKEND': 'django.template.backends.django.DjangoTemplates', 'DIRS': [],
+    'BACKEND': 'django.template.backends.django.DjangoTemplates', 'DIRS': [BASE_DIR / 'templates'],
     'APP_DIRS': True, 'OPTIONS': {'context_processors': [
         'django.template.context_processors.request',
         'django.contrib.auth.context_processors.auth',
@@ -58,8 +58,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
     'DEFAULT_THROTTLE_CLASSES': ['rest_framework.throttling.AnonRateThrottle', 'rest_framework.throttling.UserRateThrottle'],
-    'DEFAULT_THROTTLE_RATES': {'anon': '60/min', 'user': '600/min', 'authentication': '10/min'},
+    'DEFAULT_THROTTLE_RATES': {'anon': '10/min', 'user': '600/min', 'authentication': '10/min'},
 }
+DJOSER = {'HIDE_USERS': True}
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
