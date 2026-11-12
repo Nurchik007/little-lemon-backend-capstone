@@ -1,4 +1,5 @@
 from django.db import IntegrityError, transaction
+from djoser.views import TokenCreateView
 from rest_framework import generics, permissions, status, viewsets
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -12,12 +13,7 @@ class StaffOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.method in permissions.SAFE_METHODS or bool(request.user and request.user.is_staff)
 
-class MenuItemsView(generics.ListCreateAPIView):
-    queryset = Menu.objects.all()
-    serializer_class = MenuSerializer
-    permission_classes = [StaffOrReadOnly]
-
-class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
+class MenuViewSet(viewsets.ModelViewSet):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
     permission_classes = [StaffOrReadOnly]
@@ -53,6 +49,13 @@ class RegistrationView(generics.CreateAPIView):
     throttle_scope = 'authentication'
 
 class LoginView(ObtainAuthToken):
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = 'authentication'
+
+# A named DRF token view callable, preserving the scoped authentication throttle.
+obtain_auth_token = LoginView.as_view()
+
+class DjoserTokenCreateView(TokenCreateView):
     throttle_classes = [ScopedRateThrottle]
     throttle_scope = 'authentication'
 
